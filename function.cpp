@@ -49,9 +49,10 @@ void merge(std::vector<double>& array, int begin, int mid, int end)
 
 }
 
+
 void mergeSort(std::vector<double>& array,int begin,int end)
-{    begin = 0;
-    if (begin > end)
+{
+    if (begin >= end)
     {
         return;
     }
