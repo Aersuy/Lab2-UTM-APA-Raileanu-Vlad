@@ -1,6 +1,7 @@
 #pragma once
-#include "function.h"
 #include <iostream>
+#include "function.h"
+
 void merge(std::vector<double>& array, int begin, int mid, int end)
 {   int num1,num2;
        num1 = mid - begin + 1;
@@ -62,7 +63,7 @@ void mergeSort(std::vector<double>& array,int begin,int end)
     merge(array,begin,mid,end);
 }
 
-void printVector(const std::vector<double>& v)
+void printVector( std::vector<double>& v)
 {
     int max = v.size();
 
@@ -72,4 +73,34 @@ void printVector(const std::vector<double>& v)
     }
     std::cout << "\n";
     
+}
+
+
+
+int partition(std::vector<double>& array, int begin, int end)
+{
+    double pivot = array[end]; 
+    int iterator1 = begin - 1;   
+
+    for (int iterator2 = begin; iterator2 <= end - 1; iterator2++)
+    {
+        if (array[iterator2] < pivot)
+        {
+            iterator1++; 
+            std::swap(array[iterator1], array[iterator2]);
+        }
+    }
+
+    std::swap(array[iterator1 + 1], array[end]); 
+    return iterator1 + 1;
+}
+void quickSort(std::vector<double>& arr,int begin,int end)
+{
+  if (begin < end)
+  {
+      int part = partition(arr,begin,end);
+      quickSort(arr,part + 1,end);
+      quickSort(arr,begin,part - 1);
+  }
+  
 }
